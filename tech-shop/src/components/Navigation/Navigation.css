@@ -1,0 +1,97 @@
+@import "https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900";
+
+header{
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    background: url("images/navigation-cover.png") no-repeat;
+    background-size: cover;
+    filter: brightness(90%);
+    width: 100%;
+    color: white;
+}
+
+header .navigation-menu{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 25px;
+}
+
+header .logo{
+    display: flex;
+}
+
+header img{
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+}
+
+header nav{
+    padding-top: 20px;
+}
+
+header li{
+    display: inline-block;
+}
+
+header a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: white;
+    padding-right: 25px;
+}
+
+header h1{
+    text-align: center;
+    padding-top: 15px;
+}
+
+header h2{
+    margin-top: 100px;
+    margin-bottom: 10px;
+    font-size: 3em; 
+}
+
+header h3{
+    font-size: 1.5em;
+    padding-bottom: 150px;
+    margin-bottom: 0;
+}
+
+header .auth{
+    display: inline-block;
+}
+
+header .profile{
+    display: inline-block;
+}
+
+header #username-container{
+    font-size: 1.1em;
+    padding: 0 15px;
+}
+
+header #username{
+    font-weight: bold;
+}
+
+.activeNav{
+    color: lightskyblue;
+}
+
+@media all and (max-width: 970px) {
+    header .navigation-menu{
+        display: block;
+    }
+
+    header .logo{
+        display: flex;
+        justify-content: center;
+    }
+
+    header .nav{
+        width: 100%;
+    }
+}

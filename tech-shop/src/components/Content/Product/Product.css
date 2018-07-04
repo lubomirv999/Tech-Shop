@@ -1,0 +1,57 @@
+.products{
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 10px;
+}
+
+.singleProduct{
+    background-color: aliceblue;
+    border: 1px solid lightskyblue;
+    border-radius: 10px;
+    display: inline-block;
+    width: 30%;    
+    text-align: center;
+    margin: 5px;
+}
+
+.productImg{
+    width: 100%;
+}
+
+.productTitle{
+    font-size: 1.1em;
+    padding: 10px 10px 10px 0;
+}
+
+.productPrice{
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 25px;
+}
+
+.productDescription{
+    width: 95%;
+    text-align: justify;
+    padding: 5px 0;
+    margin: auto;
+}
+
+.buyBtn{
+    background-color: lightskyblue;
+    border-radius: 15px;
+    font-size: 1.1em;
+    color: white;
+    float: left;
+    padding: 7px 30px;
+    margin: 10px 10px 0 10px;
+}
+
+.detailsBtn{
+    background-color: #57b846;
+    border-radius: 15px;
+    font-size: 1.1em;
+    color: white;
+    float: right;
+    padding: 7px 30px;
+    margin: 10px 10px 0 10px;
+}

@@ -1,0 +1,31 @@
+table {
+    background-color: lightskyblue; 
+    border-radius: 15px;
+    border-collapse: collapse;
+    font-family: arial, sans-serif;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+}
+
+th:first-child{
+    padding: 15px;
+}
+
+td, th {
+    border: 2px solid lightseagreen;
+    text-align: center;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(227, 247, 253);
+    color: darkturquoise;
+}
+
+.userDeleteBtn{
+    background-color: lightcoral;
+    padding: 8px 30px;
+    color: white;
+    border-radius: 13px;
+}
