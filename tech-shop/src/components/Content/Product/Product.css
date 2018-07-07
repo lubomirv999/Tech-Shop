@@ -55,3 +55,28 @@
     padding: 7px 30px;
     margin: 10px 10px 0 10px;
 }
+
+@media only screen and (max-width: 850px) {
+    .singleProduct{
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .singleProduct{
+        width: 100%;
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .singleProduct{
+        width: 100%;
+        display: block;
+        height: 600px;
+    }
+
+    .buyBtn, .detailsBtn{
+        padding: 3px 10px;
+    }
+}

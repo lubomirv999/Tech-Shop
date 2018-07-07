@@ -69,7 +69,8 @@ export default class Register extends Component {
             })
         } else {
             this.setState({
-                errorMessage: null
+                errorMessage: null,
+                isValid: true
             })
         }
     }
@@ -82,6 +83,7 @@ export default class Register extends Component {
                 .then(res => {
                     observer.trigger(observer.events.loginUser, res.username);
                     sessionStorage.setItem('authtoken', res._kmd.authtoken);
+                    sessionStorage.setItem('globalUser', res.username);
                     this.props.history.push('/');
                 })
                 .catch(res => {
@@ -99,10 +101,10 @@ export default class Register extends Component {
                         errorMessage: 'Something went wrong!'
                     })
                 })
-                :
-                this.setState({
-                    errorMessage: 'Invalid credentials!'
-                })
+            :
+            this.setState({
+                errorMessage: 'Invalid credentials!'
+            })
     }
 
     render() {

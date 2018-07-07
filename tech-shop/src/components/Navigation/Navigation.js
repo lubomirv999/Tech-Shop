@@ -12,13 +12,23 @@ export default class Navigation extends Component {
 
         this.state = {
             username: ''
-        }
+        };
 
         observer.subscribe(observer.events.loginUser, this.userLoggedIn);
+        observer.subscribe(observer.events.logoutUser, this.logoutUser);
     }
 
-    userLoggedIn = username =>
+    userLoggedIn = username => {
         this.setState({ username });
+    }
+
+    logoutUser = () => {
+        sessionStorage.removeItem('authtoken');
+        sessionStorage.setItem('globalUser', null);
+        this.setState({
+            username: null
+        });
+    }
 
     isAdmin = () => {
         if (this.state.username === 'Admin') {
@@ -49,7 +59,9 @@ export default class Navigation extends Component {
                     <nav>
                         <ul>
                             <li><NavLink to="/" activeClassName="activeNav">Home</NavLink></li>
-                            {this.state.username ? loggedInSection :
+                            {sessionStorage.getItem('authtoken') && sessionStorage.getItem('globalUser')
+                                ? loggedInSection
+                                :
                                 <div className="auth">
                                     <li><NavLink to="/login" activeClassName="activeNav">Login</NavLink></li>
                                     <li><NavLink to="/register" activeClassName="activeNav">Register</NavLink></li>

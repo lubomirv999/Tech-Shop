@@ -9,7 +9,7 @@ export default class MainController extends Component {
         return (
             <div>
                 <Navigation />
-                <AppRouter />            
+                <AppRouter />
                 <Footer />
             </div>
         )

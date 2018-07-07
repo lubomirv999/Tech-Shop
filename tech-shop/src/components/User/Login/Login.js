@@ -45,7 +45,8 @@ export default class Register extends Component {
             })
         } else {
             this.setState({
-                errorMessage: null
+                errorMessage: null,
+                isValid: true
             })
         }
     }
@@ -54,35 +55,35 @@ export default class Register extends Component {
         ev.preventDefault();
 
         this.state.isValid ?
-        requester.post('user', 'login', 'basic', this.state.user)
-            .then(res => {
-                console.log(res.error);
-                if (res.error) {
+            requester.post('user', 'login', 'basic', this.state.user)
+                .then(res => {
+                    if (res.error) {
+                        this.setState({
+                            user: {
+                                username: '', password: ''
+                            }
+                        });
+                        this.setState({
+                            errorMessage: res.error
+                        })
+                    } else {
+                        observer.trigger(observer.events.loginUser, res.username);
+                        sessionStorage.setItem('authtoken', res._kmd.authtoken);
+                        sessionStorage.setItem('globalUser', res.username);
+                        this.props.history.push('/');
+                    }
+                })
+                .catch(res => {
                     this.setState({
                         user: {
-                            username: '', password: ''
+                            username: '',
+                            password: ''
                         }
                     });
                     this.setState({
-                        errorMessage: res.error
+                        errorMessage: 'Something went wrong!'
                     })
-                } else {
-                    observer.trigger(observer.events.loginUser, res.username);
-                    sessionStorage.setItem('authtoken', res._kmd.authtoken);
-                    this.props.history.push('/');
-                }
-            })
-            .catch(res => {
-                this.setState({
-                    user: {
-                        username: '',
-                        password: ''
-                    }
-                });
-                this.setState({
-                    errorMessage: 'Something went wrong!'
                 })
-            })
             :
             this.setState({
                 errorMessage: 'Invalid credentials!'

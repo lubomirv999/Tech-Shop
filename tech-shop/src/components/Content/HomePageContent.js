@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import Product from './Product/Product';
 
-export default class HomePageContent extends Component {   
+export default class HomePageContent extends Component {
     render() {
         return (
-            <div>                
+            <div>
                 <Product />
             </div>
         )

@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import requester from '../../../api/utilities/requester';
+import observer from '../../../api/utilities/observer';
 
 export default class Logout extends Component {
     logout = () => {
         requester.post('user', '_logout', 'kinvey')
-            .then(res => sessionStorage.removeItem('authtoken'));
+            .then(res => {
+                observer.trigger(observer.events.logoutUser)
+            });
     }
 
     render = () => {

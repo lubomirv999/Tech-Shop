@@ -8,14 +8,14 @@ table {
     font-weight: bold;
 }
 
-th:first-child{
+thead>th:first-child{
     padding: 15px;
 }
 
 td, th {
     border: 2px solid lightseagreen;
     text-align: center;
-    padding: 5px;
+    padding: 15px;
 }
 
 tr:nth-child(even) {
@@ -23,9 +23,14 @@ tr:nth-child(even) {
     color: darkturquoise;
 }
 
-.userDeleteBtn{
+.userDelete{
     background-color: lightcoral;
-    padding: 8px 30px;
+    padding: 10px 30px;
     color: white;
     border-radius: 13px;
+}
+
+.userDelete:hover{
+    background-color: lightseagreen;
+    color: white;
 }
