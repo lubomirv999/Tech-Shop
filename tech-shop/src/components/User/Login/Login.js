@@ -70,6 +70,7 @@ export default class Register extends Component {
                         observer.trigger(observer.events.loginUser, res.username);
                         sessionStorage.setItem('authtoken', res._kmd.authtoken);
                         sessionStorage.setItem('globalUser', res.username);
+                        sessionStorage.setItem('userId', res._id);
                         this.props.history.push('/');
                     }
                 })

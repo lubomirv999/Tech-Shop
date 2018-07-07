@@ -1,8 +1,8 @@
 import $ from 'jquery'
 
 const kinveyBaseUrl = "https://baas.kinvey.com/";
-const kinveyAppKey = "kid_ryZZwQbf7";
-const kinveyAppSecret = "626ef6c5099b4727b04b90c3eaf969fe";
+const kinveyAppKey = "kid_HJBAsXRzX";
+const kinveyAppSecret = "8e1c3e98a4e04cf8b63187baf310476e";
 
 // Creates the authentication header
 function makeAuth(type) {

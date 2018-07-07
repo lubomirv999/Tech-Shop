@@ -1,0 +1,17 @@
+.sellProductBtn{
+    background-color: lightseagreen;
+    border-radius: 20px;
+    text-align: center;
+    width: 85%;    
+    padding: 10px 40px;
+    margin: 20px auto;
+}
+
+.sellProductBtn #link{
+    font-size: 1.3em;
+    color: white;
+}
+
+.sellProductBtn #link:hover{
+    color: white;   
+}

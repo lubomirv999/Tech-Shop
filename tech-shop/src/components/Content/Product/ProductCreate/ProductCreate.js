@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 
-import requester from '../../../api/utilities/requester';
-import observer from '../../../api/utilities/observer';
+import requester from '../../../../api/utilities/requester';
+import observer from '../../../../api/utilities/observer';
 
-import './Register.css';
-import logo from './images/img-01.png';
-import '../../../../node_modules/font-awesome/css/font-awesome.min.css'
+import './ProductCreate.css';
+import createProduct from './images/createProduct.png';
 
-export default class Register extends Component {
+export default class ProductCreate extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: {
-                username: '',
-                password: '',
-                email: '',
+            product: {
+                title: '',
+                price: '',
+                description: '',
                 imageUrl: '',
-                firstName: '',
-                lastName: ''
+                authorId: sessionStorage.getItem('userId')
             },
             errorMessage: '',
             isValid: false
@@ -29,42 +27,33 @@ export default class Register extends Component {
         let fieldName = ev.target.name;
         let fieldValue = ev.target.value;
 
-        let user = Object.assign({}, this.state.user);
-        user[fieldName] = fieldValue;
+        let product = Object.assign({}, this.state.product);
+        product[fieldName] = fieldValue;
 
-        this.setState({ user });
+        this.setState({ product });
         this.setState({
             [fieldName]: fieldValue
         })
 
-        if (this.state.user.username !== '' && this.state.user.username.length < 4) {
+        if (this.state.product.title !== '' && this.state.product.title.length < 4) {
             this.setState({
-                errorMessage: 'Username should be atleast 4 symbols!',
+                errorMessage: 'Title should be atleast 4 symbols!',
                 isValid: false
             })
-        } else if (this.state.user.password !== '' && this.state.user.password.length < 7) {
+        } else if (this.state.product.price !== '' && this.state.product.price.length < 1) {
             this.setState({
-                errorMessage: 'Password should be atleast 7 symbols!',
+                errorMessage: 'Price should be atleast 1 symbols!',
                 isValid: false
             })
-        } else if (this.state.user.email !== '' && this.state.user.email.length < 5) {
+        } else if (this.state.product.description !== '' && this.state.product.description.length < 5
+            && this.state.product.description.length > 200) {
             this.setState({
-                errorMessage: 'Email should be atleast 5 symbols!',
+                errorMessage: 'Description should be atleast 5 symbols and less than 200 symbols!',
                 isValid: false
             })
-        } else if (this.state.user.imageUrl !== '' && this.state.user.imageUrl.length < 10) {
+        } else if (this.state.product.imageUrl !== '' && this.state.product.imageUrl.length < 10) {
             this.setState({
                 errorMessage: 'Image Url should be atleast 10 symbols!',
-                isValid: false
-            })
-        } else if (this.state.user.firstName !== '' && this.state.user.firstName.length < 4) {
-            this.setState({
-                errorMessage: 'First name should be atleast 4 symbols!',
-                isValid: false
-            })
-        } else if (this.state.user.lastName !== '' && this.state.user.lastName.length < 4) {
-            this.setState({
-                errorMessage: 'Last name should be atleast 4 symbols!',
                 isValid: false
             })
         } else {
@@ -79,23 +68,19 @@ export default class Register extends Component {
         ev.preventDefault();
 
         this.state.isValid ?
-            requester.post('user', '', 'basic', this.state.user)
+            requester.post('appdata', 'products', 'kinvey', this.state.product)
                 .then(res => {
-                    observer.trigger(observer.events.loginUser, res.username);
-                    sessionStorage.setItem('authtoken', res._kmd.authtoken);
-                    sessionStorage.setItem('globalUser', res.username);
-                    sessionStorage.setItem('userId', res._id);
+                    observer.trigger(observer.events.createProduct, res.product);
                     this.props.history.push('/');
                 })
                 .catch(res => {
                     this.setState({
-                        user: {
-                            username: '',
-                            password: '',
-                            email: '',
+                        product: {
+                            title: '',
+                            price: '',
+                            description: '',
                             imageUrl: '',
-                            firstName: '',
-                            lastName: ''
+                            authorId: ''
                         }
                     });
                     this.setState({
@@ -121,39 +106,24 @@ export default class Register extends Component {
                 <div className="container-login100-register">
                     <div className="wrap-login100">
                         <div className="login100-pic js-tilt" data-tilt>
-                            <img className="registerLogo" src={logo} alt="IMG" />
+                            <img className="registerLogo" src={createProduct} alt="IMG" />
                         </div>
 
                         <form className="login100-form validate-form" onSubmit={this.onSubmitHandler}>
-                            <span className="login100-form-title">Register</span>
+                            <span className="login100-form-title">Create Product</span>
 
                             <div className="wrap-input100">
                                 <input
                                     className="input100"
                                     type="text"
-                                    name="username"
-                                    placeholder="Username"
+                                    name="title"
+                                    placeholder="Title"
                                     required
                                     onChange={this.onChangeHandler} />
 
                                 <span className="focus-input100"></span>
                                 <span className="symbol-input100">
-                                    <i className="fa fa-user" aria-hidden="true"></i>
-                                </span>
-                            </div>
-
-                            <div className="wrap-input100">
-                                <input
-                                    className="input100"
-                                    type="text"
-                                    name="firstName"
-                                    placeholder="First Name"
-                                    required
-                                    onChange={this.onChangeHandler} />
-
-                                <span className="focus-input100"></span>
-                                <span className="symbol-input100">
-                                    <i className="fa fa-address-card" aria-hidden="true"></i>
+                                    <i className="fa fa-product-hunt" aria-hidden="true"></i>
                                 </span>
                             </div>
 
@@ -161,14 +131,14 @@ export default class Register extends Component {
                                 <input
                                     className="input100"
                                     type="text"
-                                    name="lastName"
-                                    placeholder="Last Name"
+                                    name="price"
+                                    placeholder="Price"
                                     required
                                     onChange={this.onChangeHandler} />
 
                                 <span className="focus-input100"></span>
                                 <span className="symbol-input100">
-                                    <i className="fa fa-address-card" aria-hidden="true"></i>
+                                    <i className="fa fa-money" aria-hidden="true"></i>
                                 </span>
                             </div>
 
@@ -176,31 +146,16 @@ export default class Register extends Component {
                                 <input
                                     className="input100"
                                     type="text"
-                                    name="email"
-                                    placeholder="Email"
+                                    name="description"
+                                    placeholder="Description"
                                     required
                                     onChange={this.onChangeHandler} />
 
                                 <span className="focus-input100"></span>
                                 <span className="symbol-input100">
-                                    <i className="fa fa-envelope" aria-hidden="true"></i>
+                                    <i className="fa fa-file-text" aria-hidden="true"></i>
                                 </span>
-                            </div>
-
-                            <div className="wrap-input100">
-                                <input
-                                    className="input100"
-                                    type="password"
-                                    name="password"
-                                    placeholder="Password"
-                                    required
-                                    onChange={this.onChangeHandler} />
-
-                                <span className="focus-input100"></span>
-                                <span className="symbol-input100">
-                                    <i className="fa fa-lock" aria-hidden="true"></i>
-                                </span>
-                            </div>
+                            </div>                            
 
                             <div className="wrap-input100">
                                 <input
@@ -218,7 +173,7 @@ export default class Register extends Component {
                             </div>
 
                             <div className="container-login100-form-btn">
-                                <button className="login100-form-btn" type="submit">Register</button>
+                                <button className="login100-form-btn" type="submit">Create Product</button>
                             </div>
                         </form>
                     </div>

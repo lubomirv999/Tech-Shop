@@ -25,6 +25,7 @@ export default class Navigation extends Component {
     logoutUser = () => {
         sessionStorage.removeItem('authtoken');
         sessionStorage.setItem('globalUser', null);
+        sessionStorage.setItem('userId', null);
         this.setState({
             username: null
         });
