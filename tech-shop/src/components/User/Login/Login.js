@@ -82,7 +82,7 @@ export default class Register extends Component {
                         }
                     });
                     this.setState({
-                        errorMessage: 'Something went wrong!'
+                        errorMessage: res.error.description
                     })
                 })
             :

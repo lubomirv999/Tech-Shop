@@ -45,10 +45,10 @@ export default class ProductCreate extends Component {
                 errorMessage: 'Price should be atleast 1 symbols!',
                 isValid: false
             })
-        } else if (this.state.product.description !== '' && this.state.product.description.length < 5
+        } else if (this.state.product.description !== '' && this.state.product.description.length < 190
             && this.state.product.description.length > 200) {
             this.setState({
-                errorMessage: 'Description should be atleast 5 symbols and less than 200 symbols!',
+                errorMessage: 'Description should be atleast 190 symbols and less than 200 symbols!',
                 isValid: false
             })
         } else if (this.state.product.imageUrl !== '' && this.state.product.imageUrl.length < 10) {
@@ -68,7 +68,7 @@ export default class ProductCreate extends Component {
         ev.preventDefault();
 
         this.state.isValid ?
-            requester.post('appdata', 'products', 'kinvey', this.state.product)
+            requester.post('appdata', 'products', 'master', this.state.product)
                 .then(res => {
                     observer.trigger(observer.events.createProduct, res.product);
                     this.props.history.push('/');
@@ -84,7 +84,7 @@ export default class ProductCreate extends Component {
                         }
                     });
                     this.setState({
-                        errorMessage: 'Something went wrong!'
+                        errorMessage: res.error.description
                     })
                 })
             :
@@ -130,7 +130,7 @@ export default class ProductCreate extends Component {
                             <div className="wrap-input100">
                                 <input
                                     className="input100"
-                                    type="text"
+                                    type="number"
                                     name="price"
                                     placeholder="Price"
                                     required

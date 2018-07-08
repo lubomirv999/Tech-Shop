@@ -80,11 +80,15 @@ export default class Register extends Component {
 
         this.state.isValid ?
             requester.post('user', '', 'basic', this.state.user)
-                .then(res => {
+                .then(res => {                    
                     observer.trigger(observer.events.loginUser, res.username);
                     sessionStorage.setItem('authtoken', res._kmd.authtoken);
                     sessionStorage.setItem('globalUser', res.username);
                     sessionStorage.setItem('userId', res._id);
+
+                    let endpoint = res._id + '/roles/ea0fcfa5-b241-46e5-8ed0-43e4dc4bb37e';
+                    requester.update('user', endpoint, 'master');
+
                     this.props.history.push('/');
                 })
                 .catch(res => {
@@ -99,7 +103,7 @@ export default class Register extends Component {
                         }
                     });
                     this.setState({
-                        errorMessage: 'Something went wrong!'
+                        errorMessage: res.error.description
                     })
                 })
             :

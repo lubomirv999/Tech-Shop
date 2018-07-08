@@ -20,7 +20,7 @@ export default class AllProducts extends Component {
     }
 
     getProducts = () => {
-        requester.get('appdata', 'products', 'basic')
+        requester.get('appdata', 'products', 'master')
             .then(res => {
                 this.setState({ products: res })
             });
@@ -32,7 +32,7 @@ export default class AllProducts extends Component {
 
     render() {
         return (
-            <div>
+            <div className="products">
                 {this.state.products.map((p, i) => <Product key={p._id} index={i} {...p} />)}
             </div>
         )

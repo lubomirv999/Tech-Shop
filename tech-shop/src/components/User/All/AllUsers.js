@@ -34,7 +34,7 @@ export default class AllUsers extends Component {
         var index = this.state.users.map(function (u) { return u.Id; }).indexOf(id);
         var newUsers = this.state.users.splice(index, 1);
 
-        requester.remove('user', id, 'kinvey')
+        requester.remove('user', id, 'master')
             .then(res => {
                 this.setState({
                     users: newUsers
