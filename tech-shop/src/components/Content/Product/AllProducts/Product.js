@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class Product extends Component {
+    shouldDisplayBuyBtn = () => {
+        if (sessionStorage.getItem('userId')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    componentDidMount() {
+        this.shouldDisplayBuyBtn();
+    }
+
+    componentWillMount() {
+        this.shouldDisplayBuyBtn();
+    }
+
+    componentWillUpdate() {
+        this.shouldDisplayBuyBtn();
+    }
+
     render() {
         return (
             <div className="singleProduct">
@@ -11,13 +31,17 @@ export default class Product extends Component {
                         <a className="productTitle" href="">{this.props.title}</a>
                         <span className="productPrice">${this.props.price}</span>
                         <h6 className="productDescription">{this.props.description}</h6>
-                        <Link className="buyBtn" to="/product/buy">Buy</Link>
+                        {
+                            this.shouldDisplayBuyBtn()
+                                ? <Link className="buyBtn" to="/product/confirm">Buy</Link>
+                                : null
+                        }
                         {
                             (this.props.authorId === sessionStorage.getItem('userId'))
                                 ?
                                 <div>
-                                    <Link className="editBtn" to={"/product/edit/" + this.props._id}>Edit</Link>
-                                    <Link className="deleteBtn" to={"/product/delete/" + this.props._id}>Delete</Link>
+                                    <Link className="editBtn" to={'/product/edit/' + this.props._id}>Edit</Link>
+                                    <button className="deleteBtn" onClick={() => this.props.deleteProduct(this.props._id)} >Delete</button>
                                 </div>
                                 : null
                         }

@@ -41,8 +41,7 @@ export default class Navigation extends Component {
 
     render() {
         const loggedInSection = (
-            <div className="profile">
-                <li><NavLink to="/orders" activeClassName="activeNav">My Orders</NavLink></li>
+            <div className="profile">                
                 <li><NavLink to="/reviews" activeClassName="activeNav">Reviews</NavLink></li>
                 {this.isAdmin() ? <li><NavLink to="/users" activeClassName="activeNav">Users</NavLink></li> : null}
                 <span id="username-container">Hello, <span id="username">{this.state.username}</span>!</span>

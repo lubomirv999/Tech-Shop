@@ -3,17 +3,16 @@ import React, { Component } from 'react';
 import requester from '../../../../api/utilities/requester';
 import observer from '../../../../api/utilities/observer';
 
-import createProduct from './images/createProduct.png';
+import createReview from './images/createReview.png';
 
-export default class ProductCreate extends Component {
+export default class ReviewCreate extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            product: {
+            review: {
                 title: '',
-                price: '',
-                description: '',
+                content: '',
                 imageUrl: '',
                 authorId: sessionStorage.getItem('userId')
             },
@@ -26,31 +25,26 @@ export default class ProductCreate extends Component {
         let fieldName = ev.target.name;
         let fieldValue = ev.target.value;
 
-        let product = Object.assign({}, this.state.product);
-        product[fieldName] = fieldValue;
+        let review = Object.assign({}, this.state.review);
+        review[fieldName] = fieldValue;
 
-        this.setState({ product });
+        this.setState({ review });
         this.setState({
             [fieldName]: fieldValue
         })
 
-        if (this.state.product.title !== '' && this.state.product.title.length < 4) {
+        if (this.state.review.title !== '' && this.state.review.title.length < 4) {
             this.setState({
                 errorMessage: 'Title should be atleast 4 symbols!',
                 isValid: false
             })
-        } else if (this.state.product.price !== '' && this.state.product.price.length < 1) {
-            this.setState({
-                errorMessage: 'Price should be atleast 1 symbols!',
-                isValid: false
-            })
-        } else if (this.state.product.description !== '' && this.state.product.description.length < 190
-            && this.state.product.description.length > 200) {
+        } else if (this.state.review.content !== '' && this.state.review.content.length < 190
+            && this.state.review.content.length > 200) {
             this.setState({
                 errorMessage: 'Description should be atleast 190 symbols and less than 200 symbols!',
                 isValid: false
             })
-        } else if (this.state.product.imageUrl !== '' && this.state.product.imageUrl.length < 10) {
+        } else if (this.state.review.imageUrl !== '' && this.state.review.imageUrl.length < 10) {
             this.setState({
                 errorMessage: 'Image Url should be atleast 10 symbols!',
                 isValid: false
@@ -67,19 +61,18 @@ export default class ProductCreate extends Component {
         ev.preventDefault();
 
         this.state.isValid ?
-            requester.post('appdata', 'products', 'master', this.state.product)
+            requester.post('appdata', 'reviews', 'master', this.state.review)
                 .then(res => {
-                    observer.trigger(observer.events.createProduct, res.product);
-                    this.props.history.push('/');
+                    observer.trigger(observer.events.createReview, res.review);
+                    this.props.history.push('/reviews');
                 })
                 .catch(res => {
                     this.setState({
-                        product: {
+                        review: {
                             title: '',
-                            price: '',
-                            description: '',
+                            content: '',
                             imageUrl: '',
-                            authorId: ''
+                            authorId: sessionStorage.getItem('userId')
                         }
                     });
                     this.setState({
@@ -105,11 +98,11 @@ export default class ProductCreate extends Component {
                 <div className="container-login100-register">
                     <div className="wrap-login100">
                         <div className="login100-pic js-tilt" data-tilt>
-                            <img className="registerLogo" src={createProduct} alt="IMG" />
+                            <img className="registerLogo" src={createReview} alt="IMG" />
                         </div>
 
                         <form className="login100-form validate-form" onSubmit={this.onSubmitHandler}>
-                            <span className="login100-form-title">Create Product</span>
+                            <span className="login100-form-title">Write a review</span>
 
                             <div className="wrap-input100">
                                 <input
@@ -129,24 +122,9 @@ export default class ProductCreate extends Component {
                             <div className="wrap-input100">
                                 <input
                                     className="input100"
-                                    type="number"
-                                    name="price"
-                                    placeholder="Price"
-                                    required
-                                    onChange={this.onChangeHandler} />
-
-                                <span className="focus-input100"></span>
-                                <span className="symbol-input100">
-                                    <i className="fa fa-money" aria-hidden="true"></i>
-                                </span>
-                            </div>
-
-                            <div className="wrap-input100">
-                                <input
-                                    className="input100"
                                     type="text"
-                                    name="description"
-                                    placeholder="Description"
+                                    name="content"
+                                    placeholder="Content"
                                     required
                                     onChange={this.onChangeHandler} />
 
@@ -154,7 +132,7 @@ export default class ProductCreate extends Component {
                                 <span className="symbol-input100">
                                     <i className="fa fa-file-text" aria-hidden="true"></i>
                                 </span>
-                            </div>                            
+                            </div>
 
                             <div className="wrap-input100">
                                 <input
@@ -172,7 +150,7 @@ export default class ProductCreate extends Component {
                             </div>
 
                             <div className="container-login100-form-btn">
-                                <button className="login100-form-btn" type="submit">Create Product</button>
+                                <button className="login100-form-btn" type="submit">Create Review</button>
                             </div>
                         </form>
                     </div>

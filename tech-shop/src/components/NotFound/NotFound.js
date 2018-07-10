@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import './NotFound.css';
 
-export default class AppRouter extends Component {
+export default class NotFound extends Component {
     render() {
         return (
             <div className="notFound">
@@ -11,7 +12,7 @@ export default class AppRouter extends Component {
                     <hr />
                     <div className='_1'>THE PAGE</div>
                     <div className='_2'>WAS NOT FOUND</div>
-                    <a className='btn' href='/'>BACK TO HOME</a>
+                    <Link className='btn' to="/">BACK TO HOME</Link>
                 </div>
             </div>
         )

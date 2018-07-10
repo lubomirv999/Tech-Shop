@@ -89,7 +89,7 @@ export default class Register extends Component {
                     let endpoint = res._id + '/roles/ea0fcfa5-b241-46e5-8ed0-43e4dc4bb37e';
                     requester.update('user', endpoint, 'master');
 
-                    this.props.history.push('/');
+                    this.props.history.push('/success');
                 })
                 .catch(res => {
                     this.setState({

@@ -7,7 +7,13 @@ import Logout from './User/Logout/Logout';
 import HomePageContent from './Content/HomePageContent';
 import AllUsers from './User/All/AllUsers';
 import ProductCreate from './Content/Product/ProductCreate/ProductCreate';
+import ProductEdit from './Content/Product/UpdateProduct/ProductUpdate';
+import ProductConfirm from './Content/Product/BoughtProduct/ProductConfirm';
 import ProductBuy from './Content/Product/BoughtProduct/BoughtProduct';
+import AllReviews from './Content/Review/AllReviews/AllReviews';
+import ReviewCreate from './Content/Review/ReviewCreate/ReviewCreate';
+import ReviewEdit from './Content/Review/UpdateReview/ReviewUpdate';
+import Success from './Content/Success/Success';
 import NotFound from './NotFound/NotFound';
 
 export default class AppRouter extends Component {
@@ -21,7 +27,13 @@ export default class AppRouter extends Component {
                     <Route path="/logout" exact component={Logout} />
                     <Route path="/users" exact component={AllUsers} />   
                     <Route path="/product/create" exact component={ProductCreate} /> 
-                    <Route path="/product/buy" exact component={ProductBuy} />               
+                    <Route path="/product/edit/:id" exact component={ProductEdit} /> 
+                    <Route path="/product/confirm" exact component={ProductConfirm} />
+                    <Route path="/product/buy" exact component={ProductBuy} />     
+                    <Route path="/reviews" exact component={AllReviews} /> 
+                    <Route path="/review/create" exact component={ReviewCreate} /> 
+                    <Route path="/review/edit/:id" exact component={ReviewEdit} /> 
+                    <Route path="/success" exact component={Success} />               
                     <Route component={NotFound} />
                 </Switch>
             </div>

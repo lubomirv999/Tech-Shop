@@ -13,10 +13,25 @@ export default class AllProducts extends Component {
         this.state = {
             products: []
         };
+
+        this.deleteProduct = this.deleteProduct.bind(this);
     }
 
-    componentWillMount = () => {
-        this.getProducts();
+    deleteProduct(id) {
+        var index = this.state.products.map(function (p) {
+            return p._id;
+        }).indexOf(id);
+
+        let endpoint = 'products/' + id;
+
+        requester.remove('appdata', endpoint, 'master')
+            .then(res => {
+                this.setState(prevState => {
+                    prevState.products = prevState.products.filter((obj, ix) => ix !== index)
+                });
+
+                this.props.history.push('/');
+            })
     }
 
     getProducts = () => {
@@ -26,6 +41,10 @@ export default class AllProducts extends Component {
             });
     }
 
+    componentWillUpdate = () => {
+        this.getProducts();
+    }
+
     componentDidMount = () => {
         this.getProducts();
     }
@@ -33,7 +52,7 @@ export default class AllProducts extends Component {
     render() {
         return (
             <div className="products">
-                {this.state.products.map((p, i) => <Product key={p._id} index={i} {...p} />)}
+                {this.state.products.map((p, i) => <Product key={p._id} index={i} {...p} deleteProduct={this.deleteProduct} />)}
             </div>
         )
     }

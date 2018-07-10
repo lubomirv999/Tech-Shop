@@ -19,10 +19,6 @@ export default class AllUsers extends Component {
         this.deleteUser = this.deleteUser.bind(this);
     }
 
-    componentWillMount = () => {
-        this.getUsers();
-    }
-
     getUsers = () => {
         requester.get('user', '', 'kinvey')
             .then(res => {
@@ -31,22 +27,36 @@ export default class AllUsers extends Component {
     }
 
     deleteUser(id) {
-        var index = this.state.users.map(function (u) { return u.Id; }).indexOf(id);
-        var newUsers = this.state.users.splice(index, 1);
+        var index = this.state.users.map(function (u) {
+            return u._id;
+        }).indexOf(id);
 
         requester.remove('user', id, 'master')
             .then(res => {
-                this.setState({
-                    users: newUsers
-                })
+                this.setState(prevState => {
+                    prevState.users = prevState.users.filter((obj, ix) => ix !== index)
+                });
+
                 this.props.history.push('/users');
             })
     }
 
+    shouldDisplayUsers = () => {
+        if (sessionStorage.getItem('userId') === '5b44b42561f1880b866d8cd4') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    componentWillMount = () => {
+        this.getUsers();
+        this.shouldDisplayUsers();
+    }
 
     componentDidMount = () => {
         this.getUsers();
+        this.shouldDisplayUsers();
     }
 
     render() {
@@ -62,7 +72,11 @@ export default class AllUsers extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.users.map((u, i) => <User key={u._id} index={i} {...u} deleteUser={this.deleteUser} />)}
+                        {
+                            this.shouldDisplayUsers ?
+                                this.state.users.map((u, i) => <User key={u._id} index={i} {...u} deleteUser={this.deleteUser} />)
+                                : null
+                        }
                     </tbody>
                 </table>
             </div>

@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import requester from '../../../../api/utilities/requester';
 import observer from '../../../../api/utilities/observer';
 
-import createProduct from './images/createProduct.png';
+import editProduct from './images/editProduct.png';
 
-export default class ProductCreate extends Component {
+export default class ProductEdit extends Component {
     constructor(props) {
         super(props);
 
@@ -66,22 +66,15 @@ export default class ProductCreate extends Component {
     onSubmitHandler = ev => {
         ev.preventDefault();
 
+        let endpoint = 'products/' + this.props.match.params.id;
+
         this.state.isValid ?
-            requester.post('appdata', 'products', 'master', this.state.product)
+            requester.update('appdata', endpoint, 'master', this.state.product)
                 .then(res => {
-                    observer.trigger(observer.events.createProduct, res.product);
-                    this.props.history.push('/');
+                    observer.trigger(observer.events.updateProduct, res.product);
+                    this.props.history.push('/success');
                 })
                 .catch(res => {
-                    this.setState({
-                        product: {
-                            title: '',
-                            price: '',
-                            description: '',
-                            imageUrl: '',
-                            authorId: ''
-                        }
-                    });
                     this.setState({
                         errorMessage: res.error.description
                     })
@@ -105,11 +98,11 @@ export default class ProductCreate extends Component {
                 <div className="container-login100-register">
                     <div className="wrap-login100">
                         <div className="login100-pic js-tilt" data-tilt>
-                            <img className="registerLogo" src={createProduct} alt="IMG" />
+                            <img className="registerLogo" src={editProduct} alt="IMG" />
                         </div>
 
                         <form className="login100-form validate-form" onSubmit={this.onSubmitHandler}>
-                            <span className="login100-form-title">Create Product</span>
+                            <span className="login100-form-title">Edit your Product</span>
 
                             <div className="wrap-input100">
                                 <input
@@ -172,7 +165,7 @@ export default class ProductCreate extends Component {
                             </div>
 
                             <div className="container-login100-form-btn">
-                                <button className="login100-form-btn" type="submit">Create Product</button>
+                                <button className="login100-form-btn" type="submit">Edit your product</button>
                             </div>
                         </form>
                     </div>

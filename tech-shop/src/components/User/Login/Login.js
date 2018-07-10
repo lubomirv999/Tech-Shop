@@ -71,7 +71,7 @@ export default class Register extends Component {
                         sessionStorage.setItem('authtoken', res._kmd.authtoken);
                         sessionStorage.setItem('globalUser', res.username);
                         sessionStorage.setItem('userId', res._id);
-                        this.props.history.push('/');
+                        this.props.history.push('/success');
                     }
                 })
                 .catch(res => {
