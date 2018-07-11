@@ -5,6 +5,7 @@ import Register from './User/Register/Register';
 import Login from './User/Login/Login';
 import Logout from './User/Logout/Logout';
 import HomePageContent from './Content/HomePageContent';
+import About from './About/About';
 import AllUsers from './User/All/AllUsers';
 import ProductCreate from './Content/Product/ProductCreate/ProductCreate';
 import ProductEdit from './Content/Product/UpdateProduct/ProductUpdate';
@@ -33,6 +34,7 @@ export default class AppRouter extends Component {
                     <Route path="/reviews" exact component={AllReviews} /> 
                     <Route path="/review/create" exact component={ReviewCreate} /> 
                     <Route path="/review/edit/:id" exact component={ReviewEdit} /> 
+                    <Route path="/about" exact component={About} />  
                     <Route path="/success" exact component={Success} />               
                     <Route component={NotFound} />
                 </Switch>

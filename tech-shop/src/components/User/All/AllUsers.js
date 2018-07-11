@@ -73,7 +73,7 @@ export default class AllUsers extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.shouldDisplayUsers ?
+                            this.shouldDisplayUsers() ?
                                 this.state.users.map((u, i) => <User key={u._id} index={i} {...u} deleteUser={this.deleteUser} />)
                                 : null
                         }

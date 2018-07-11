@@ -1,0 +1,48 @@
+.about{
+    background:  rgba(0, 0, 0, 0) linear-gradient(to right, #1e5799 0%, #3ccdbb 0%, #16c9f6 100%) repeat scroll 0 0;
+    font-family: 'Times New Roman', Times, sans-serif;
+    text-align: center;
+    height: 650px;
+}
+
+.aboutHeading{
+    border-bottom: 3px solid white;
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    width: 35%;
+    padding: 35px 0 10px 0;
+    margin: auto;
+}
+
+.aboutInfoHeading{
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    width: 70%;
+    padding: 35px 0 10px 0;
+    margin: auto;
+}
+
+.aboutMeHeading{
+    border-bottom: 3px solid white;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    width: 70%;
+    padding: 35px 0 0 0;
+    margin: 0 auto;
+}
+
+.aboutMeInfo{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    width: 70%;
+    padding: 15px 0 35px 0;
+    margin: auto;
+}
+
+.aboutMeImg{
+    border-radius: 15px;
+}

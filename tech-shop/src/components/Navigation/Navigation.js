@@ -59,6 +59,7 @@ export default class Navigation extends Component {
                     <nav>
                         <ul>
                             <li><NavLink to="/" activeClassName="activeNav">Home</NavLink></li>
+                            <li><NavLink to="/about" activeClassName="activeNav">About</NavLink></li>
                             {sessionStorage.getItem('authtoken') && sessionStorage.getItem('globalUser')
                                 ? loggedInSection
                                 :
