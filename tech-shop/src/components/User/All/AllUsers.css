@@ -34,3 +34,9 @@ tr:nth-child(even) {
     background-color: lightseagreen;
     color: white;
 }
+
+
+.userProfilePicture{
+    width: 200px;
+    height: 200px;
+}

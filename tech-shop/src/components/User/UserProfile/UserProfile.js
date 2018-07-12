@@ -19,6 +19,8 @@ export default class UserProfile extends Component {
                 lastName: ''
             }
         };
+
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     getUser = () => {
@@ -27,6 +29,20 @@ export default class UserProfile extends Component {
                 this.setState({
                     user: res
                 })
+            })
+    }
+
+    deleteUser(id) {
+        requester.remove('user', id, 'master')
+            .then(res => {
+                sessionStorage.removeItem('authtoken');
+                sessionStorage.removeItem('globalUser', null);
+                sessionStorage.removeItem('userId', null);
+                this.setState({
+                    user: {}
+                });
+
+                this.props.history.push('/success');
             })
     }
 
@@ -44,6 +60,7 @@ export default class UserProfile extends Component {
                 <img className="userProfilePicture" src={this.state.user.imageUrl} alt="User Profile" />
                 <div className="userProfileBtns">
                     <Link className="userProfileEditBtn" to={'edit/' + sessionStorage.getItem('userId')}>Edit</Link>
+                    <button className="userProfileDeleteBtn" onClick={() => this.deleteUser(sessionStorage.getItem('userId'))}>Delete</button>
                 </div>
             </div>
         )

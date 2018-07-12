@@ -8,10 +8,10 @@ export default class Review extends Component {
                 <img className="reviewImg" src={this.props.imageUrl} alt="Review" />
                 <div>
                     <div>
-                        <a className="reviewTitle" href="">{this.props.title}</a>
+                        <span className="reviewTitle" href="">{this.props.title}</span>
                         <h6 className="reviewContent">{this.props.content}</h6>
                         {
-                            (this.props.authorId === sessionStorage.getItem('userId') || sessionStorage.getItem('userId') === '5b44b42561f1880b866d8cd4')
+                            (this.props.authorId === sessionStorage.getItem('userId') || sessionStorage.getItem('userId') === '5b4753194eeb2f4ee5e240f5')
                                 ?
                                 <div>
                                     <Link className="editBtn" to={"/review/edit/" + this.props._id}>Edit</Link>

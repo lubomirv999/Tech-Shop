@@ -28,7 +28,7 @@ export default class Product extends Component {
                 <img className="productImg" src={this.props.imageUrl} alt="Product" />
                 <div>
                     <div>
-                        <a className="productTitle" href="">{this.props.title}</a>
+                        <span className="productTitle" href="">{this.props.title}</span>
                         <span className="productPrice">${this.props.price}</span>
                         <h6 className="productDescription">{this.props.description}</h6>
                         {
@@ -37,7 +37,7 @@ export default class Product extends Component {
                                 : null
                         }
                         {
-                            (this.props.authorId === sessionStorage.getItem('userId') || sessionStorage.getItem('userId') === '5b44b42561f1880b866d8cd4')
+                            (this.props.authorId === sessionStorage.getItem('userId') || sessionStorage.getItem('userId') === '5b4753194eeb2f4ee5e240f5')
                                 ?
                                 <div>
                                     <Link className="editBtn" to={'/product/edit/' + this.props._id}>Edit</Link>

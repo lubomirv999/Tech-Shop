@@ -42,7 +42,7 @@ export default class AllUsers extends Component {
     }
 
     shouldDisplayUsers = () => {
-        if (sessionStorage.getItem('userId') === '5b44b42561f1880b866d8cd4') {
+        if (sessionStorage.getItem('userId') === '5b4753194eeb2f4ee5e240f5') {
             return true;
         } else {
             return false;
