@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import observer from '../../api/utilities/observer';
 
@@ -24,8 +24,8 @@ export default class Navigation extends Component {
 
     logoutUser = () => {
         sessionStorage.removeItem('authtoken');
-        sessionStorage.setItem('globalUser', null);
-        sessionStorage.setItem('userId', null);
+        sessionStorage.removeItem('globalUser', null);
+        sessionStorage.removeItem('userId', null);
         this.setState({
             username: null
         });
@@ -41,10 +41,10 @@ export default class Navigation extends Component {
 
     render() {
         const loggedInSection = (
-            <div className="profile">                
+            <div className="profile">
                 <li><NavLink to="/reviews" activeClassName="activeNav">Reviews</NavLink></li>
                 {this.isAdmin() ? <li><NavLink to="/users" activeClassName="activeNav">Users</NavLink></li> : null}
-                <span id="username-container">Hello, <span id="username">{this.state.username}</span>!</span>
+                <span id="username-container">Hello, <Link id="username" to={'user/' + sessionStorage.getItem('userId')}>{this.state.username}</Link>!</span>
                 <li><NavLink to="/logout" id="linkMenuLogout">Logout</NavLink></li>
             </div>);
 

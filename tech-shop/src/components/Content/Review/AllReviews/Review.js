@@ -5,13 +5,13 @@ export default class Review extends Component {
     render() {
         return (
             <div className="singleReview">
-                <a href="" ><img className="reviewImg" src={this.props.imageUrl} alt="Review" /></a>
+                <img className="reviewImg" src={this.props.imageUrl} alt="Review" />
                 <div>
                     <div>
                         <a className="reviewTitle" href="">{this.props.title}</a>
                         <h6 className="reviewContent">{this.props.content}</h6>
                         {
-                            (this.props.authorId === sessionStorage.getItem('userId'))
+                            (this.props.authorId === sessionStorage.getItem('userId') || sessionStorage.getItem('userId') === '5b44b42561f1880b866d8cd4')
                                 ?
                                 <div>
                                     <Link className="editBtn" to={"/review/edit/" + this.props._id}>Edit</Link>

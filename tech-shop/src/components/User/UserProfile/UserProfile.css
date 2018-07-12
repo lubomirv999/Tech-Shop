@@ -1,0 +1,43 @@
+.userProfile{
+    background:  rgba(0, 0, 0, 0) linear-gradient(to right, #1e5799 0%, #3ccdbb 0%, #16c9f6 100%) repeat scroll 0 0;
+    font-family: 'Times New Roman', Times, sans-serif;
+    text-align: center;
+    height: 675px;
+    padding: 35px;
+}
+
+.userInfo{
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    width: 50%;
+    padding: 15px;
+    margin: auto;
+}
+
+.userProfilePicture{
+    width: 30%;
+    height: 215px;
+}
+
+.userProfileBtns{
+    padding: 25px 0;
+}
+
+.userProfileEditBtn{
+    background-color: yellow;
+    border-radius: 15px;
+    font-size: 1.1em;
+    color: lightskyblue;
+    padding: 7px 30px;
+    margin: 10px 10px 0 10px;
+}
+
+.userProfileDeleteBtn{
+    background-color: lightcoral;
+    border-radius: 15px;
+    font-size: 1.1em;
+    color: white;
+    padding: 7px 30px;
+    margin: 10px 10px 0 10px;
+}

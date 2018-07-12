@@ -4,7 +4,8 @@ let subscriptions = {
     'logoutUser': [],
     'createProduct': [],
     'createReview': [],
-    'editProduct': []
+    'editProduct': [],
+    'editUser': []
 };
 
 export default {
@@ -14,7 +15,8 @@ export default {
         logoutUser: 'logoutUser',
         createProduct: 'createProduct',
         createReview: 'createReview',
-        editProduct: 'editProduct'
+        editProduct: 'editProduct',
+        editUser: 'editUser'
     },
     subscribe: (eventName, fn) =>
         subscriptions[eventName].push(fn),
