@@ -18,14 +18,9 @@ The Application is implemented with Kinvey and ReactJS
 * Prevent security exploits (XSS, XSRF, Parameter Tampering, etc.)
 * Handle correctly special HTML characters and tags
 * Source control - Github
-* Use responsive design
 * Nice looking UI, supporting of all modern and old Web browsers
 * Good usability
-* Use a state management library like Flux or Redux
 * Deploy the application in a cloud environment
-* Use a file storage cloud API, e.g. Dropbox, Google Drive or other for storing the files
-* Connect to an external API, like Google Maps, AccuWeather, etc.
-* Use of features of HTML 5 like Geolocation, Local Storage, SVG, Canvas, etc.
 * Anything that is not described in the assignment is a bonus if it has some practical use
 
 ## The application should have:
@@ -37,13 +32,10 @@ The Application is implemented with Kinvey and ReactJS
 ### Tables
 
 #### Product
-* Id, Title, Description, Price, AuthorId, imageUrl
+* Id, Title, Description, Price, AuthorId, ImageUrl
 
 #### Review
-* Id, Title, Content, UserId, ProductId
-
-#### Order
-* Id, CreatedOn, TotalPrice, UserId, ProductId 
+* Id, Title, Content, ImageUrl, UserId
 
 ## Business Logic of the application
 ### Three types of users:
@@ -55,11 +47,9 @@ The Application is implemented with Kinvey and ReactJS
 * Create product for sale (Full CRUD on it)
 * Create review for a product (Full CRUD on it)
 * Buy product
-* See their cart
-* Make an order
 
 ### Administrators are able to
-* See Admin panel - Can delete all users and products
+* See Admin panel - Can delete all users, full CRUD on products and reviews
 
 ### Deadline
 * Project should be completed before 15 July 2018
